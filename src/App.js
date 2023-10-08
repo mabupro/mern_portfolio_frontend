@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/fetch-qiita-articles')
+      .then(response => response.json())
+      .then(data => setArticles(data));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {articles.map(article => (
+        <div key={article.id}>
+          <a href={article.url}>{article.title}</a>
+        </div>
+      ))}
     </div>
   );
 }
