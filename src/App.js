@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './App.css';
+import FetchQiitaMyArticles from './components/FetchQiitaMyArticles';
 
 function App() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/fetch-qiita-articles')
-      .then(response => response.json())
-      .then(data => setArticles(data));
+    axios.get('http://localhost:5000/fetch-qiita-articles')
+      .then(response => setArticles(response.data))
+      .catch(error => console.error('Error fetching data: ', error));
   }, []);
 
   return (
     <div className="App">
-      {articles.map(article => (
-        <div key={article.id}>
-          <a href={article.url}>{article.title}</a>
-        </div>
-      ))}
+      <FetchQiitaMyArticles articles={articles} />
     </div>
   );
 }
