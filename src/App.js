@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './App.css';
-import FetchQiitaMyArticles from './components/FetchQiitaMyArticles';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { DefaultHeader } from "./components/DefaultHeader";
+import { NavigationBar } from "./components/NavigationBar";
+import { IndexPage } from './pages/IndexPage';
+import { ShowQiitaPage } from './pages/ShowQiitaPage';
 
 function App() {
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/fetch-qiita-articles')
-      .then(response => setArticles(response.data))
-      .catch(error => console.error('Error fetching data: ', error));
-  }, []);
-
   return (
     <div className="App">
-      <FetchQiitaMyArticles articles={articles} />
+      <BrowserRouter>
+        <DefaultHeader />
+        <NavigationBar />
+        <Routes>
+          <Route exact path='/' element={<IndexPage />} />
+          <Route exact path='/qiita' element={<ShowQiitaPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

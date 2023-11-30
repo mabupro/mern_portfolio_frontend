@@ -10,11 +10,24 @@ import Box from '@mui/material/Box';
 
 const FetchQiitaMyArticles = ({ articles }) => {
     return (
-        <Container maxWidth="sm">
-            <Grid container spacing={3}>
-                {articles.map(article => (
-                    <Grid item xs={12} key={article.id}>
-                        <Card sx={{ maxWidth: 600 }} >
+        <Container maxWidth="xl" sx={{ backgroundColor: '#f5f5f5', padding: 3 }}>
+            <Grid container spacing={2} justifyContent="center">
+                {articles.map((article, index) => (
+                    <Grid item xs={12} md={9} key={article.id}>
+                        <Card
+                            sx={{
+                                maxWidth: 600,
+                                margin: 'auto',
+                                backgroundColor: '#ffffff',
+                                boxShadow: 3,
+                                opacity: 0,
+                                animation: `fadeIn 1s ease-out ${index * 0.1}s forwards`,
+                                '@keyframes fadeIn': {
+                                    '0%': { opacity: 0, transform: 'translateY(-20px)' },
+                                    '100%': { opacity: 1, transform: 'translateY(0)' }
+                                }
+                            }}
+                        >
                             <CardActionArea
                                 href={article.url}
                                 target="_blank"
@@ -22,12 +35,10 @@ const FetchQiitaMyArticles = ({ articles }) => {
                                     height: '100%',
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    justifyContent: 'space-between'
                                 }}
                             >
-                                <CardContent sx={{ paddingBottom: 0 }}> 
+                                <CardContent sx={{ paddingBottom: 0 }}>
                                     <Typography
-                                        gutterBottom
                                         variant="h6"
                                         component="div"
                                         sx={{
