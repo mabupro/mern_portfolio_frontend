@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 export const DefaultHeader = () => {
     return (
-        <AppBar position="static" sx={{ backgroundColor: 'darkslateblue' }}>
+        <AppBar position="fixed" sx={{ backgroundColor: '#483d8b' }}>
             <Toolbar>
                 <Typography
                     variant="h6"

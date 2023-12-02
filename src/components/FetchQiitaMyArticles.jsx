@@ -42,7 +42,7 @@ const FetchQiitaMyArticles = ({ articles }) => {
                                         variant="h6"
                                         component="div"
                                         sx={{
-                                            color: 'darkslateblue',
+                                            color: '#483d8b',
                                             fontWeight: 'bold',
                                             overflow: 'hidden',
                                             textOverflow: 'ellipsis',

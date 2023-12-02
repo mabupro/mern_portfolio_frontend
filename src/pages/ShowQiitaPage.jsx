@@ -3,6 +3,7 @@ import axios from 'axios';
 import FetchQiitaMyArticles from '../components/FetchQiitaMyArticles';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 export const ShowQiitaPage = () => {
     const [articles, setArticles] = useState([]);
@@ -22,13 +23,21 @@ export const ShowQiitaPage = () => {
 
     if (isLoading) {
         return (
-            <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-                <CircularProgress />
+            <Box sx={{ pt: 12 }}>
+                <Container maxWidth="xl" sx={{ backgroundColor: '#f5f5f5', padding: 3 }}>
+                    <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+                        <CircularProgress />
+                    </Box>
+                </Container>
             </Box>
         );
     }
 
     return (
-        <FetchQiitaMyArticles articles={articles} />
+        <Box sx={{ pt: 12 }}>
+            <Container maxWidth="xl" sx={{ backgroundColor: '#f5f5f5', padding: 3 }}>
+                <FetchQiitaMyArticles articles={articles} />
+            </Container>
+        </Box>
     );
 };
